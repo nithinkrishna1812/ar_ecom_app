@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="login-register-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a class="active" href="#lg1">
+                                <h4> Register </h4>
+                            </a>
+                        </div>
+                        <div id="lg1" class="tab-pane">
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    <form method="POST">
+                                    {% csrf_token %}
+                                        {% for field in form %}
+                                        <div>
+                                            {{ field.errors }}
+                                            <label>{{ field.label_tag }}</label>
+                                            <p>{{ field }}</p>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="button-box">
+                                            <button type="submit">Register</button>
+                                        </div>
+                                    </form>
+                                    <div class="button-box pt-20 h6">
+                                        <a href="{% url 'login' %}">Already have an account?</a> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

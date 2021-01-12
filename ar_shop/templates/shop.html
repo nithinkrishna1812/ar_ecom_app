@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Shop Page Area Start -->
+        <div class="shop-page-area ptb-50">
+            <div class="container">
+                <div class="row flex-row-reverse">
+                    <div class="col-lg">
+                        <div class="shop-topbar-wrapper">
+                            <div class="shop-topbar-left">
+                                <ul class="view-mode">
+                                    <li class="active"><a href="#product-grid" data-view="product-grid"><i class="fa fa-th"></i></a></li>
+                                    <li><a href="#product-list" data-view="product-list"><i class="fa fa-list-ul"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="grid-list-product-wrapper">
+                            <div class="product-grid product-view pb-20">
+                                <div class="row">
+                                {% for product in products %}
+                                    <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{% url 'product-details' product.title %}">
+                                                    <img alt="" src="{{product.imageURL}}">
+                                                </a>
+                                                {% if product.discount %}
+                                                <span>-{{product.discount}}%</span>
+                                                {% endif %}
+                                                <div class="product-action">
+                                                    <a class="action-wishlist" href="#" title="Wishlist">
+                                                        <i class="ion-android-favorite-outline"></i>
+                                                    </a>
+                                                    <a class="action-cart" href="{% url 'cart' %}" title="Add To Cart">
+                                                        <i class="ti-shopping-cart"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="product-content text-left">
+                                                <div class="product-hover-style">
+                                                    <div class="product-title">
+                                                        <h4>
+                                                            <a href="{% url 'product-details' product.title %}">{{product.title}}</a>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="cart-hover">
+                                                        <h4><a href="{% url 'cart' %}">+ Add to cart</a></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="product-price-wrapper">
+                                                {% if product.discount %}
+                                                    <span>&#x20B9;{{product.discount_price|floatformat:2}} -</span>
+                                                    <span class="product-price-old">&#x20B9;{{product.price|floatformat:2}} </span>
+                                                {% else %}
+                                                    <span>&#x20B9;{{product.price|floatformat:2}} </span>
+                                                {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="product-list-details">
+                                                <h4>
+                                                    <a href="{% url 'product-details' product.title %}">{{product.title}}</a>
+                                                </h4>
+                                                <div class="product-price-wrapper">
+                                                {% if product.discount %}
+                                                    <span>&#x20B9;{{product.discount_price|floatformat:2}} -</span>
+                                                    <span class="product-price-old">&#x20B9;{{product.price|floatformat:2}} </span>
+                                                {% else %}
+                                                    <span>&#x20B9;{{product.price|floatformat:2}} </span>
+                                                {% endif %}
+                                                </div>
+                                                <p>{{product.description}}</p>
+                                                <div class="shop-list-cart-wishlist">
+                                                    <a href="#" title="Wishlist"><i class="ion-android-favorite-outline"></i></a>
+                                                    <a href="#" title="Add To Cart"><i class="ti-shopping-cart"></i></a>
+                                                        <i class="ion-ios-search-strong"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>             
+        </div> 
+{% endblock content %}
+

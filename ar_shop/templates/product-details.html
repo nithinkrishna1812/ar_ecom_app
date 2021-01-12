@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Product Deatils Area Start -->
+    <div class="product-details pt-100 pb-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-details-img">
+                        <img class="zoompro" src="{{product.imageURL}}" data-zoom-image="{{product.imageURL}}" alt=""/>
+                        <div id="gallery" class="mt-20 product-dec-slider owl-carousel">
+                            <a data-image="{{product.imageURL}}" data-zoom-image="{{product.imageURL}}">
+                            {% for image in images %}
+                                <img src="{{image.imageURL}}" alt="">
+                            {% endfor %}
+                            </a>
+                        </div>
+                        {% if product.discount %}
+                        <span>-{{product.discount}}%</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-details-content">
+                        <h4>{{ product.title }}</h4>
+                        {% if product.discount %}
+                        <div class="product-price-wrapper">
+                            <span class="product-price-old">&#x20B9;{{product.price|floatformat:2}} </span>
+                        </div>
+                        <span>&#x20B9;{{product.discount_price|floatformat:2}}</span>
+                        {% else %}
+                        <span>&#x20B9;{{product.price|floatformat:2}}</span>
+                        {% endif %}
+                        <div class="in-stock">
+                            <p>Available: {% if product.active %}<span>In stock</span>{% else %}<span>Out of stock</span>{% endif %}</p>
+                        </div>
+                        <p>{{product.description}}</p>                        
+                        <div class="quality-add-to-cart">
+                            <div class="quality">
+                                <label>Qty:</label>
+                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">
+                            </div>
+                        </div>
+                        <div class="shopping-cart-btn">
+                            <a class="update-cart" data-product="{{product.id}}" data-action="add" href="{% url 'cart' %}">Add to cart</a>
+                            <a href="checkout.html">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product Deatils Area End -->
+    <div class="product-area pb-100">
+        <div class="container">
+            <div class="product-top-bar section-border mb-35">
+                <div class="section-title-wrap">
+                    <h3 class="section-title section-bg-white">Related Products</h3>
+                </div>
+            </div>
+            <div class="featured-product-active hot-flower owl-carousel product-nav">
+            {% for product in similarproducts %}
+                <div class="product-wrapper">
+                    <div class="product-img">
+                        <a href="product-details.html">
+                            <img alt="" src="{{product.imageURL}}">
+                        </a>
+                        {% if product.discount %}
+                        <span>-{{product.discount}}%</span>
+                        {% endif %}
+                        <div class="product-action">
+                            <a class="action-wishlist" href="#" title="Wishlist">
+                                <i class="ion-android-favorite-outline"></i>
+                            </a>
+                            <a class="action-cart" href="#" title="Add To Cart">
+                                <i class="ti-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-content text-left">
+                        <div class="product-hover-style">
+                            <div class="product-title">
+                                <h4>
+                                    <a href="{% url 'product-details' product.title %}">{{product.title}}</a>
+                                </h4>
+                            </div>
+                            <div class="cart-hover">
+                                <h4><a href="{% url 'product-details' product.title %}">+ Add to cart</a></h4>
+                            </div>
+                        </div>
+                        <div class="product-price-wrapper">
+                        {% if product.discount %}
+                            <span>&#x20B9;{{product.discount_price|floatformat:2}} -</span>
+                            <span class="product-price-old">&#x20B9;{{product.price|floatformat:2}} </span>
+                        {% else %}
+                            <span>&#x20B9;{{product.price|floatformat:2}} </span>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div> 
+            {% endfor %}              
+            </div>
+        </div>
+    </div>    
+{% endblock content %}
