@@ -29,6 +29,15 @@ function addCookieItem(productId, action) {
             delete cart[productId]
         }
     }
+
+    if (action == 'add-to-cart'){
+        if (cart[productId] == undefined) {
+            cart[productId] = { 'quantity': Number($("#quantity").val()) }   
+        } else {
+            cart[productId]['quantity'] += Number($("#quantity").val())           
+        }
+    }
+
     document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
     location.reload()
 }
@@ -41,7 +50,7 @@ function updateUserOrder(productId, action) {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrftoken,
             },
-            body: JSON.stringify({ 'productId': productId, 'action': action })
+            body: JSON.stringify({ 'productId': productId, 'action': action, 'add_to_cart_quantity': Number($("#quantity").val())})
         })
         .then((response) => {
             return response.json()

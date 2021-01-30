@@ -14,7 +14,7 @@
                                     <tr>
                                         <th>Image</th>
                                         <th>Product Name</th>
-                                        <th>Until Price</th>
+                                        <th>Product Price</th>
                                         <th>Qty</th>
                                         <th>Subtotal</th>
                                         <th>Delete</th>
@@ -24,10 +24,12 @@
                                 {% for item in items %}
                                     <tr>
                                         <td class="product-thumbnail">
-                                            <a href="#"><img src="{{item.product.imageURL}}" alt=""></a>
-                                            {% if item.product.discount %}
-                                                <span>-{{item.product.discount}}%</span>
-                                            {% endif %}
+                                            <div class="product-img" style="border: none; padding-left: 2%">
+                                                <a href="#"><img src="{{item.product.imageURL}}" alt=""></a>
+                                                {% if item.product.discount %}
+                                                    <span>-{{item.product.discount}}%</span>
+                                                {% endif %}
+                                            </div>
                                         </td>
                                         <td class="product-name"><a href="#">{{item.product.title}}</a></td>
                                         <td class="product-price-cart">

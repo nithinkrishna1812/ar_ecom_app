@@ -38,11 +38,11 @@
                         <div class="quality-add-to-cart">
                             <div class="quality">
                                 <label>Qty:</label>
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">
+                                <input id="quantity" class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
                             </div>
                         </div>
                         <div class="shopping-cart-btn">
-                            <a class="update-cart" data-product="{{product.id}}" data-action="add" href="{% url 'cart' %}">Add to cart</a>
+                            <a id="add_to_cart" class="update-cart" data-product="{{product.id}}" data-action="add-to-cart" href="">Add to cart</a>
                             <a href="checkout.html">Buy Now</a>
                         </div>
                     </div>

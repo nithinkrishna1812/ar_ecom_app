@@ -9,7 +9,7 @@ def cookieCart(request):
 		cart = {}
 
 	items = []
-	order = {'get_cart_total': 0, 'get_cart_items': 0, 'shipping': False}
+	order = {'get_cart_total': 0, 'get_cart_items': 0} #'shipping': False
 	cartItems = order['get_cart_items']
 
 	for i in cart:
@@ -36,7 +36,7 @@ def cookieCart(request):
 				'get_total': total,
 				}
 			items.append(item)
-			order['shipping'] = True
+			#order['shipping'] = True
 		except:
 			pass
 	return {'cartItems': cartItems, 'order': order, 'items': items}

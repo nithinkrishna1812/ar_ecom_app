@@ -74,10 +74,10 @@ class Order(models.Model):
     def __str__(self):
         return str(self.customer.name)
 
-    @property
-    def shipping(self):
-	    shipping = True
-	    return shipping
+    # @property
+    # def shipping(self):
+	#     shipping = True
+	#     return shipping
 
     @property
     def get_cart_total(self):
@@ -111,8 +111,7 @@ class OrderItem(models.Model):
 
 
 class ShippingAddress(models.Model):
-    customer = models.ForeignKey(
-        Customer, on_delete=models.SET_NULL, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=200, null=False)
     state = models.CharField(max_length=200, null=False)
@@ -122,3 +121,25 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return str(self.address)
+
+
+class CustomerAddress(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    address = models.CharField(max_length=2000, null=False)
+
+    def __str__(self):
+        return self.customer.name
+
+
+class Country(models.Model):
+    country = models.CharField(max_length=100, null=False, blank=False)
+
+    def __str__(self):
+        return self.country
+
+
+class Pincode(models.Model):
+    pincode = models.CharField(max_length=100, null=False, blank=False)
+
+    def __str__(self):
+        return self.pincode
