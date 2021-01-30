@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html lang='en'>
     
 <head>
     <meta charset="utf-8">
@@ -11,6 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}">
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
     
     <!-- all css here -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
@@ -82,7 +86,8 @@
                     <div class="col-lg-3 col-md-4 col-6">
                         <div class="logo">
                             <a href="{% url 'home' %}">
-                                <img alt="" src="{% static 'assets/img/logo/logo.png' %}">
+                                <img alt="" src="{% static 'assets/img/delta_logo.png' %}">
+                                <span>DeltaFarms</span>
                             </a>
                         </div>
                     </div>

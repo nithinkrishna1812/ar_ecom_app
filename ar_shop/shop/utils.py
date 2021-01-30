@@ -60,6 +60,7 @@ def cartData(request):
 def guestOrder(request, data):
 	name = data['form']['name']
 	email = data['form']['email']
+	phone = data['form']['phone']
 
 	cookieData = cookieCart(request)
 	items = cookieData['items']

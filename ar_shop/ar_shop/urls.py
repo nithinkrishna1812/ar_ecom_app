@@ -26,6 +26,7 @@ urlpatterns = [
     path('cart/', cart_page, name='cart'),
     path('checkout/', checkout_page, name='checkout'),
     path('update_item/', updateItem, name='update_item'),
+    path('process_order/', processOrder, name='process_order'),
     path('shop/<str:pk>/', shop_page, name='shop'),
     path('accounts/login/', LoginView.as_view(template_name='registration/login.html', redirect_authenticated_user=True), name='login'),
     path('register/', register_page, name='register'),

@@ -72,12 +72,7 @@ class Order(models.Model):
     transaction_id = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return str(self.customer.name)
-
-    # @property
-    # def shipping(self):
-	#     shipping = True
-	#     return shipping
+        return str(self.id)
 
     @property
     def get_cart_total(self):
@@ -98,8 +93,8 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     
-    def __str__(self):
-        return str(self.order.customer.name+":"+self.product.title)
+    # def __str__(self):
+    #     return str(self.order.customer.name+":"+self.product.title)
 
     @property
     def get_total(self):
@@ -117,6 +112,8 @@ class ShippingAddress(models.Model):
     state = models.CharField(max_length=200, null=False)
     city = models.CharField(max_length=200, null=False)
     pincode = models.CharField(max_length=200, null=False)
+    country = models.CharField(max_length=200, null=False)
+    phone = models.CharField(max_length=13, null=False)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -126,20 +123,25 @@ class ShippingAddress(models.Model):
 class CustomerAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=2000, null=False)
+    state = models.CharField(max_length=200, null=False)
+    city = models.CharField(max_length=50, null=False)
+    pincode = models.CharField(max_length=6, null=False)
+    country = models.CharField(max_length=50, null=False)
+    phone = models.CharField(max_length=13, null=False)
 
     def __str__(self):
-        return self.customer.name
+        return str(self.customer.id)
 
 
 class Country(models.Model):
     country = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
-        return self.country
+        return str(self.country)
 
 
 class Pincode(models.Model):
     pincode = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
-        return self.pincode
+        return str(self.pincode)

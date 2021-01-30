@@ -100,12 +100,24 @@ def processOrder(request):
     order.save()
 
     ShippingAddress.objects.create(
-    customer=customer,
-    order=order,
-    address=data['shipping']['address'],
-    state=data['shipping']['state'],
-    city=data['shipping']['city'],
-    pincode=data['shipping']['pincode'],
+        customer=customer,
+        order=order,
+        address=data['shipping']['address'],
+        state=data['shipping']['state'],
+        city=data['shipping']['city'],
+        pincode=data['shipping']['pincode'],
+        country=data['shipping']['country'],
+        phone=data['form']['phone'],
+    )
+
+    CustomerAddress.objects.create(
+        customer=customer,
+        address=data['shipping']['address'],
+        state=data['shipping']['state'],
+        city=data['shipping']['city'],
+        pincode=data['shipping']['pincode'],
+        country=data['shipping']['country'],
+        phone=data['form']['phone'],
     )
 
     return JsonResponse('Payment submitted..', safe=False)
@@ -118,7 +130,9 @@ def checkout_page(request):
     items = data['items']
 
     catogeries = Catogery.objects.all()
-    context = {"items": items, "order": order, "cartItems": cartItems, "catogeries": catogeries}
+    country = Country.objects.all()
+    customer_address = CustomerAddress.objects.all()
+    context = {"items": items, "order": order, "cartItems": cartItems, "catogeries": catogeries, "countries": country, "customer_address_list": customer_address}
     return render(request, "checkout.html", context)
 
 # @unauthenticated_user
